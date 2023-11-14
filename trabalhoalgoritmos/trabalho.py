@@ -1,8 +1,7 @@
 import pandas as pd
-
 #mostra apenas as cidades
 def mostrar_cidades(arquivo):
-    df = pd.read_csv(arquivo, delimeter=';', )
+    df = pd.read_csv(arquivo, delimiter=';', encoding='ISO_8859_1')
 
     cidades = df['Município']
     
@@ -44,23 +43,35 @@ def gerar_relatorio(arquivo):
     print(f'Número de linhas do documento original: {numero_linhas}')
     print(f'Nomes das colunas que descrevem os dados: {nomes_colunas}')
 
-#mostra o painel para o usuario
-def painel(escolha_inicial):
+def cidades_capitais(arquivo):
+    df = pd.read_csv(arquivo, delimiter=';', encoding='ISO-8859-1')
     
+    cidadescapital = df[df['Capital'] =="Capital"]
+    
+    print(f'As cidades capitais são:')
+    for nome_cidade in cidadescapital['Município']:
+        print(f'{nome_cidade}')
+
+
+#mostra o painel para o usuario
+def painel(escolha_inicial):  
     if escolha_inicial == 1:
-        escolha2 = int(input(' Escolha 1 para ver o relatório\n 2 para ver as cidades e o porte\n 3 para ver apenas cidades\n 4 para ver as cidades e a região delas:'))
+        escolha2 = int(input(' 1 para ver o relatório\n 2 para ver as cidades e o porte\n 3 para ver apenas cidades\n 4 para ver as cidades e a região delas\n 5 para ver quais cidades são capital:'))
         if escolha2 == 1:
-            arquivo = 'municipios.csv'
+            arquivo = 'trabalhoalgoritmos/municipios.csv'
             gerar_relatorio(arquivo)
         elif escolha2 == 2:
-            arquivo = 'municipios.csv'
+            arquivo = 'trabalhoalgoritmos/municipios.csv'
             cidade_porte(arquivo)
         elif escolha2 == 3:
-            arquivo = 'municipios.csv'  
+            arquivo = 'trabalhoalgoritmos/municipios.csv'  
             mostrar_cidades(arquivo) 
         elif escolha2 == 4:
-            arquivo = 'municipios.csv'
+            arquivo = 'trabalhoalgoritmos/municipios.csv'
             cidade_regiao(arquivo)    
+        elif escolha2 == 5:
+            arquivo =  'trabalhoalgoritmos/municipios.csv'
+            cidades_capitais(arquivo)  
     else:
         print('Você saiu')
 
