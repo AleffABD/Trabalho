@@ -36,8 +36,8 @@ def buscar_cidade(df, nome_cidade):
 
 #Função que cria um arquivo filtrado   
 def arquivo_filtrado(df):
-    coluna_filtro = input(f'Informe a coluna para filtragem: ').strip()
-    tipo_filtro = input(f'Informe o tipo de filtragem desejada para a coluna {coluna_filtro}: ').strip()
+    coluna_filtro = input(f'Informe a coluna para filtragem: ')
+    tipo_filtro = input(f'Informe o tipo de filtragem desejada para a coluna {coluna_filtro}: ')
 
     if coluna_filtro not in df.columns:
         print(f'Coluna {coluna_filtro} não encontrada.')
@@ -49,7 +49,7 @@ def arquivo_filtrado(df):
         print(f'Nenhum dado encontrado com os critérios de filtragem fornecidos.')
         return
 
-    nome_arquivo = input(f'Informe o nome do arquivo para salvar os dados filtrados (inclua a extensão .csv): ').strip()
+    nome_arquivo = input(f'Informe o nome do arquivo para salvar os dados filtrados: ')
     df_filtrado.to_csv(nome_arquivo, index=False)
 
     print(f'Arquivo {nome_arquivo} foi criado com sucesso com os dados filtrados.')    
@@ -66,8 +66,8 @@ def cidades_capitais(df):
 
 #Funçao que cria um arquivo de resumo
 def arquivo_resumo(df):
-    coluna = input('Informe uma coluna para o resumo: ').strip()
-    nome_arquivo = input('Informe o nome do arquivo de resumo: ').strip()
+    coluna = input('Informe uma coluna para o resumo: ')
+    nome_arquivo = input('Informe o nome do arquivo de resumo: ')
 
     if coluna not in df.columns or 'População 2010' not in df.columns:
         print(f'A coluna "{coluna}" ou "População 2010" não está presente no DataFrame.')
@@ -77,7 +77,7 @@ def arquivo_resumo(df):
     resumo.rename(columns={'size': 'Contagem de Cidades', 'mean': 'Média da População'}, inplace=True)
     resumo['Média da População'] = resumo['Média da População'].round(2)
     resumo = resumo.reset_index()
-    resumo.to_csv(nome_arquivo, index=False)
+    resumo.to_csv(nome_arquivo)
 
     print(f'Arquivo de resumo {nome_arquivo} criado com sucesso. Ele contém a contagem de cidades e a média da população por {coluna}.')
 
